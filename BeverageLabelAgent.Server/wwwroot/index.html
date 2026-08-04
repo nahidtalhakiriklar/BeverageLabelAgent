@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI-powered beverage label generator with chat interface. Create print-ready labels with barcodes.">
+    <title>Beverage Label Agent | Print-Ready Label Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <div class="logo">
+                    <span class="logo-icon">🏷️</span>
+                    <div class="logo-text">
+                        <h1>Beverage Label Agent</h1>
+                        <span class="logo-subtitle">AI-Powered Label Generator</span>
+                    </div>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="status-indicator" id="connectionStatus">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Connecting...</span>
+                </div>
+                <div class="llm-badge" id="llmBadge" title="AI Engine">
+                    <span class="llm-icon">🤖</span>
+                    <span class="llm-text">Loading...</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Chat Panel -->
+            <section class="chat-panel" id="chatPanel">
+                <div class="chat-messages" id="chatMessages">
+                    <!-- Messages will be rendered here -->
+                </div>
+
+                <!-- Typing Indicator -->
+                <div class="typing-indicator" id="typingIndicator" style="display: none;">
+                    <div class="typing-avatar">🤖</div>
+                    <div class="typing-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+
+                <!-- Chat Input -->
+                <div class="chat-input-container">
+                    <div class="chat-input-wrapper">
+                        <textarea 
+                            id="messageInput" 
+                            placeholder="Describe your beverage product..." 
+                            rows="1"
+                            maxlength="2000"
+                        ></textarea>
+                        <button class="send-button" id="sendButton" title="Send message">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="input-hint">
+                        <span>Press <kbd>Enter</kbd> to send • <kbd>Shift+Enter</kbd> for new line</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Label Preview Panel -->
+            <aside class="preview-panel" id="previewPanel">
+                <div class="preview-header">
+                    <h2>Label Preview</h2>
+                    <div class="preview-actions">
+                        <button class="action-btn" id="printBtn" title="Print Label" disabled>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                                <rect x="6" y="14" width="12" height="8"></rect>
+                            </svg>
+                            Print
+                        </button>
+                        <button class="action-btn" id="downloadBtn" title="Download as PNG" disabled>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            Download
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-header">
+                        <span class="progress-label">Label Completeness</span>
+                        <span class="progress-value" id="progressValue">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                    </div>
+                    <div class="missing-fields" id="missingFields"></div>
+                    <div class="contradictions" id="contradictions"></div>
+                </div>
+
+                <!-- Label Preview Area -->
+                <div class="label-preview-area" id="labelPreviewArea">
+                    <div class="empty-state" id="emptyState">
+                        <div class="empty-icon">🏷️</div>
+                        <h3>No Label Yet</h3>
+                        <p>Start chatting to create your beverage label. The preview will appear here.</p>
+                    </div>
+                    <div class="label-preview-content" id="labelPreviewContent" style="display: none;">
+                    </div>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <!-- Mobile Preview Toggle -->
+    <button class="mobile-preview-toggle" id="mobilePreviewToggle" title="Toggle Label Preview">
+        🏷️
+    </button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js"></script>
+    <script src="/js/chat.js"></script>
+    <script src="/js/label-preview.js"></script>
+    <script src="/js/app.js"></script>
+</body>
+</html>
