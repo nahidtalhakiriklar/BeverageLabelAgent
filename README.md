@@ -124,7 +124,18 @@ Agent: "Perfect! All required fields are complete. Generating your label..."
 - Without Gemini API key, uses rule-based fallback with limited NLU
 - In-memory conversation state (not persistent across server restarts)
 - Single-user per connection (no authentication)
+- 
+## Development Process & Time Spent
 
+- **Time Spent:** ~3 hours (in accordance with the task guidelines)
+- **AI Coding Agent:** Developed with the assistance of Coding Agents. Full session logs and conversation protocols are included in the repository under the `/docs/agent-logs` folder (sensitive/personal data removed).
+
+## Key Decisions & Assumptions
+
+- **Architecture:** Prioritized a clean separation of concerns using C# ASP.NET Core backend with SignalR for seamless real-time WebSocket interaction.
+- **Fallback Mechanism:** Implemented a robust rule-based NLU fallback so the application functions out-of-the-box even without a Gemini API key.
+- **UI & UX:** Focused on a clean, responsive layout with live label rendering rather than complex UI frameworks to fit within the 3-hour constraint.
+- 
 ## License
 
 This project was created as a technical evaluation task for TEC-IT.
