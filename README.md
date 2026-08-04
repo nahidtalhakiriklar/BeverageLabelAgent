@@ -1,4 +1,4 @@
-# Beverage Label Agent 🏷️
+# Beverage Label Agent 
 
 **Chat-Agent für druckfertige Getränkeetiketten**
 
@@ -6,15 +6,15 @@ An AI-powered full-stack web application that helps beverage manufacturers creat
 
 ## Features
 
-- 🤖 **AI-powered chat agent** — Understands natural language input in English and German
-- 🔍 **Smart data extraction** — Automatically extracts product details from conversation
-- ⚠️ **Contradiction detection** — Identifies inconsistencies (e.g., "non-alcoholic beer with 5% ABV")
-- ❓ **Follow-up questions** — Asks targeted questions for missing information
-- 🏷️ **Label generation** — Creates professional, print-ready label previews
-- 📊 **Barcode integration** — Generates EAN-13, QR codes, Code 128 via TEC-IT API
-- 🖨️ **Print & download** — Print labels or download as HTML
-- 📱 **Responsive design** — Works on desktop and mobile devices
-- ⚡ **Real-time** — WebSocket communication via SignalR
+-  **AI-powered chat agent** — Understands natural language input in English and German
+-  **Smart data extraction** — Automatically extracts product details from conversation
+-  **Contradiction detection** — Identifies inconsistencies (e.g., "non-alcoholic beer with 5% ABV")
+-  **Follow-up questions** — Asks targeted questions for missing information
+-  **Label generation** — Creates professional, print-ready label previews
+-  **Barcode integration** — Generates EAN-13, QR codes, Code 128 via TEC-IT API
+-  **Print & download** — Print labels or download as HTML
+-  **Responsive design** — Works on desktop and mobile devices
+-  **Real-time** — WebSocket communication via SignalR
 
 ## Tech Stack
 
@@ -66,29 +66,29 @@ dotnet test
 
 ```
                     ┌─────────────────────────────┐
-                    │     Browser (Frontend)       │
-                    │  HTML/CSS/JS + SignalR Client │
+                    │     Browser (Frontend)      │
+                     HTML/CSS/JS + SignalR Client │
                     └──────────┬──────────────────┘
                                │ WebSocket
                     ┌──────────▼──────────────────┐
-                    │    ASP.NET Core Server       │
-                    │  ┌─────────────────────┐     │
-                    │  │   SignalR ChatHub    │     │
-                    │  └────────┬────────────┘     │
-                    │           │                   │
-                    │  ┌────────▼────────────┐     │
-                    │  │  LabelAgentService   │     │
-                    │  │  (Orchestrator)      │     │
-                    │  └──┬───────────┬──────┘     │
-                    │     │           │             │
-                    │  ┌──▼──┐  ┌────▼──────────┐  │
-                    │  │ LLM │  │ LabelRenderer  │  │
-                    │  │     │  │ + TecIT Client  │  │
-                    │  └──┬──┘  └────┬──────────┘  │
-                    └─────┼──────────┼─────────────┘
+                    │    ASP.NET Core Server      │
+                    │  ┌─────────────────────┐    │
+                    │  │   SignalR ChatHub   │    │
+                    │  └────────┬────────────┘    │
+                    │           │                 │
+                    │  ┌────────▼────────────┐    │
+                    │  │  LabelAgentService  │    │
+                    │  │  (Orchestrator)     │    │
+                    │  └──┬───────────┬──────┘    │
+                    │     │           │           │
+                    │  ┌──▼──┐  ┌─────▼─────────┐ │
+                    │  │ LLM │  │ LabelRenderer │ │
+                    │  │     │  │ + TecIT Client│ │
+                    │  └──┬──┘  └────┬──────────┘ │
+                    └─────┼──────────┼────────────┘
                           │          │
-               ┌──────────▼┐  ┌─────▼────────────┐
-               │ Gemini API │  │ barcode.tec-it.com│
+               ┌───────────▼┐  ┌─────▼────────────┐
+               │ Gemini API │  │barcode.tec-it.com│
                └────────────┘  └──────────────────┘
 ```
 
@@ -124,7 +124,18 @@ Agent: "Perfect! All required fields are complete. Generating your label..."
 - Without Gemini API key, uses rule-based fallback with limited NLU
 - In-memory conversation state (not persistent across server restarts)
 - Single-user per connection (no authentication)
+- 
+## Development Process & Time Spent
 
+- **Time Spent:** ~3 hours (in accordance with the task guidelines)
+- **AI Coding Agent:** Developed with the assistance of Coding Agents. Full session logs and conversation protocols are included in the repository under the `/docs/agent-logs` folder (sensitive/personal data removed).
+
+## Key Decisions & Assumptions
+
+- **Architecture:** Prioritized a clean separation of concerns using C# ASP.NET Core backend with SignalR for seamless real-time WebSocket interaction.
+- **Fallback Mechanism:** Implemented a robust rule-based NLU fallback so the application functions out-of-the-box even without a Gemini API key.
+- **UI & UX:** Focused on a clean, responsive layout with live label rendering rather than complex UI frameworks to fit within the 3-hour constraint.
+- 
 ## License
 
 This project was created as a technical evaluation task for TEC-IT.
