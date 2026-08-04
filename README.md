@@ -1,4 +1,4 @@
-# Beverage Label Agent 🏷️
+# Beverage Label Agent 
 
 **Chat-Agent für druckfertige Getränkeetiketten**
 
@@ -6,15 +6,15 @@ An AI-powered full-stack web application that helps beverage manufacturers creat
 
 ## Features
 
-- 🤖 **AI-powered chat agent** — Understands natural language input in English and German
-- 🔍 **Smart data extraction** — Automatically extracts product details from conversation
-- ⚠️ **Contradiction detection** — Identifies inconsistencies (e.g., "non-alcoholic beer with 5% ABV")
-- ❓ **Follow-up questions** — Asks targeted questions for missing information
-- 🏷️ **Label generation** — Creates professional, print-ready label previews
-- 📊 **Barcode integration** — Generates EAN-13, QR codes, Code 128 via TEC-IT API
-- 🖨️ **Print & download** — Print labels or download as HTML
-- 📱 **Responsive design** — Works on desktop and mobile devices
-- ⚡ **Real-time** — WebSocket communication via SignalR
+-  **AI-powered chat agent** — Understands natural language input in English and German
+-  **Smart data extraction** — Automatically extracts product details from conversation
+-  **Contradiction detection** — Identifies inconsistencies (e.g., "non-alcoholic beer with 5% ABV")
+-  **Follow-up questions** — Asks targeted questions for missing information
+-  **Label generation** — Creates professional, print-ready label previews
+-  **Barcode integration** — Generates EAN-13, QR codes, Code 128 via TEC-IT API
+-  **Print & download** — Print labels or download as HTML
+-  **Responsive design** — Works on desktop and mobile devices
+-  **Real-time** — WebSocket communication via SignalR
 
 ## Tech Stack
 
@@ -66,29 +66,29 @@ dotnet test
 
 ```
                     ┌─────────────────────────────┐
-                    │     Browser (Frontend)       │
-                    │  HTML/CSS/JS + SignalR Client │
+                    │     Browser (Frontend)      │
+                     HTML/CSS/JS + SignalR Client │
                     └──────────┬──────────────────┘
                                │ WebSocket
                     ┌──────────▼──────────────────┐
-                    │    ASP.NET Core Server       │
-                    │  ┌─────────────────────┐     │
-                    │  │   SignalR ChatHub    │     │
-                    │  └────────┬────────────┘     │
-                    │           │                   │
-                    │  ┌────────▼────────────┐     │
-                    │  │  LabelAgentService   │     │
-                    │  │  (Orchestrator)      │     │
-                    │  └──┬───────────┬──────┘     │
-                    │     │           │             │
-                    │  ┌──▼──┐  ┌────▼──────────┐  │
-                    │  │ LLM │  │ LabelRenderer  │  │
-                    │  │     │  │ + TecIT Client  │  │
-                    │  └──┬──┘  └────┬──────────┘  │
-                    └─────┼──────────┼─────────────┘
+                    │    ASP.NET Core Server      │
+                    │  ┌─────────────────────┐    │
+                    │  │   SignalR ChatHub   │    │
+                    │  └────────┬────────────┘    │
+                    │           │                 │
+                    │  ┌────────▼────────────┐    │
+                    │  │  LabelAgentService  │    │
+                    │  │  (Orchestrator)     │    │
+                    │  └──┬───────────┬──────┘    │
+                    │     │           │           │
+                    │  ┌──▼──┐  ┌─────▼─────────┐ │
+                    │  │ LLM │  │ LabelRenderer │ │
+                    │  │     │  │ + TecIT Client│ │
+                    │  └──┬──┘  └────┬──────────┘ │
+                    └─────┼──────────┼────────────┘
                           │          │
-               ┌──────────▼┐  ┌─────▼────────────┐
-               │ Gemini API │  │ barcode.tec-it.com│
+               ┌───────────▼┐  ┌─────▼────────────┐
+               │ Gemini API │  │barcode.tec-it.com│
                └────────────┘  └──────────────────┘
 ```
 
